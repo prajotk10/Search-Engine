@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="new.css">
+    </head>
+
+<body>
+
+    <div class="main">
+        <div class="center" id="c">
+            
+            
+        </div>
+    </div>
+    
+
+    <script>
+        // 
+        var str="";
+        var h=document.getElementById("c");
+        fetch(`https://newsapi.org/v2/top-headlines?country=in&apiKey=8f6479e925944471843530712393ab9b`)
+            .then((response) => response.json())
+            .then((results) =>  
+            {
+
+            for (var i = 0; i < results.articles.length; i++) {
+                console.log(results.articles[i]);
+                 str+=`<div class="news"">
+              <img src="${results.articles[i].urlToImage}" style="width:300px;height:100%px;border-radius:20px" alt="">
+
+             <div class="content">
+                 <a style="font-size: 17px;color:white;font-family:googleRegular;justify-content: center;padding:5px" href="${results.articles[i].url}">${results.articles[i].url}</a>
+
+              <span style="font-size: 25px;justify-content: center;padding:5px;font-family:googleBold;">${results.articles[i].title}</span>
+              <span style="font-size: 18px;justify-content: center;padding:5px;font-family:googleRegular;">${results.articles[i].description}</span>
+
+              </div>
+             </div>`;
+                
+            }
+
+            h.innerHTML=str;
+
+           
+
+                
+            });
+           
+    </script>
+</body>
+</html>
